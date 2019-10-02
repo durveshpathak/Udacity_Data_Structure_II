@@ -2,8 +2,8 @@ import os
 
 list_of_file = []
 
-
 def find_c_files(path):
+
     if len(os.listdir(path)) == 0:
         return []
 
@@ -21,10 +21,6 @@ def find_c_files(path):
         #print(path + '/'+folders)
         find_c_files(path + '/' + folders)
     return list_of_file
-
-
-    #print(list_of_file)
-    #print (list_of_dir)
 
     return 0
 

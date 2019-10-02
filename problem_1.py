@@ -73,6 +73,7 @@ class LinkedList:
         else:
             node = self.tail
             self.tail = self.tail.prev
+            self.tail.next = None
         return node
 
     def insert(self, data, position):
@@ -137,22 +138,26 @@ class LRU_Cache(object):
 
         if key in self.cache_map:
             node_obj = self.cache_map[key]
-            #print(str(node_obj) + 'chk')
-            #print(node_obj.prev.value)
-            #self.lru_list.prepend(node_obj)
-
-            if node_obj is self.lru_list.head:
+            if node_obj is None:
                 return
-            if node_obj is self.lru_list.tail:
+
+            if node_obj.value is self.lru_list.head.value:
+                return self.lru_list.head.value
+
+            if node_obj.value is self.lru_list.tail.value:
                 self.lru_list.prepend(node_obj.value)
                 self.lru_list.poptail()
+                return node_obj.value
 
             else:
-                node_obj.prev.next = node_obj.next
-                node_obj.next.prev  = node_obj.prev
+                if node_obj.prev is not None:
+                    node_obj.prev.next = node_obj.next
+
+                if node_obj.next is not None:
+                    node_obj.next.prev  = node_obj.prev
                 self.lru_list.prepend(node_obj.value)
 
-            return node_obj.value
+                return node_obj.value
         else:
             return -1
         pass
@@ -166,7 +171,6 @@ class LRU_Cache(object):
             if self.cache_size != 0:
                 self.cache_map[key] = self.lru_list.prepend(value)
                 self.cache_size -= 1
-                #print(self.cache_map[key].value)
 
             else:
 
@@ -175,42 +179,60 @@ class LRU_Cache(object):
                 del self.cache_map[lru_key.value]
                 self.cache_map[key] = self.lru_list.prepend(value)
 
-        pass
+        return
 
 
-
-
-our_cache = LRU_Cache(5)
-#print(our_cache.size)
-
+# Test Case 1
+our_cache = LRU_Cache(5) # Cache Size define to 5
+our_cache.set(3, 3)
 our_cache.set(1, 1)
 our_cache.set(2, 2)
-our_cache.set(3, 3)
-#print (our_cache.lru_list.head.value)
 our_cache.set(4, 4)
-print(our_cache.get(3))
-print(our_cache.get(2))
 our_cache.set(5, 5)
-#print(our_cache.lru_list.tail.value.value)
+print(our_cache.get(1))
+# 1
+print(our_cache.get(2))
+# 2
+print(our_cache.get(4))
+# 4
+print(our_cache.get(77))
+# -1
 our_cache.set(6, 6)
 our_cache.set(7, 7)
-our_cache.set(8,8)
-our_cache.set(9,9)
-print(our_cache.get(2))
 print(our_cache.get(5))
-our_cache.set(10,10)
+# -1
 
-#our_cache.lru_list.print_list()#
-#print(our_cache.cache_size)
+# Test Case 2
 
- # returns 1
-#print(our_cache.get(2) )     # returns 2
-#print(our_cache.get(9)   )   # returns -1 because 9 is not present in the cache
+our_cache = LRU_Cache(3)
+print(our_cache.get(1))
+# -1
+our_cache.set(1,1)
+our_cache.set(2,2)
+print(our_cache.get(1))
+# 1
+our_cache.set(7,7)
+print(our_cache.get(2))
+# 2
+our_cache.set(8,8)
+print(our_cache.get(1))
+# -1
 
-#our_cache.set(5, 5)
-#our_cache.set(6, 6)
 
-#print(our_cache.get(3))     # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
-#print(our_cache.size)
-print(our_cache.cache_map)
-#our_cache.lru_list.print_list()
+# Edge Case
+our_cache = LRU_Cache(2)
+our_cache.set(1,1)
+our_cache.set(2,2)
+print(our_cache.get(1))
+# 1
+print(our_cache.get(2))
+# 2
+print(our_cache.get(1))
+# 1
+print(our_cache.get(1))
+# 1
+print(our_cache.get(2))
+# 2
+our_cache.set(4,4)
+print(our_cache.get(1))
+# -1
