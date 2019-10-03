@@ -10,6 +10,7 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
+        self.list = []
 
     def __str__(self):
         cur_head = self.head
@@ -42,7 +43,7 @@ class LinkedList:
         return size
 
     def to_list(self):
-        self.list = []
+
         node = self.head
         while node is not None:
             self.list.append(node.value)
@@ -124,7 +125,41 @@ linked_list_5 = LinkedList()
 linked_list_6 = LinkedList()
 
 element_1 = [3,3,3,3,3,3,3,3,3]
-element_2 = [1,3,4,1,1,]
+element_2 = [1,3,4,1,1,1]
+
+for i in element_1:
+    linked_list_5.append(i)
+
+for i in element_2:
+    linked_list_6.append(i)
+
+print (union(linked_list_5,linked_list_6))
+print (intersection(linked_list_5,linked_list_6))
+
+# Edge Cases
+
+linked_list_5 = LinkedList()
+linked_list_6 = LinkedList()
+
+element_1 = []
+element_2 = []
+
+for i in element_1:
+    linked_list_5.append(i)
+
+for i in element_2:
+    linked_list_6.append(i)
+
+print (union(linked_list_5,linked_list_6))
+print (intersection(linked_list_5,linked_list_6))
+
+# Edge Cases
+
+linked_list_5 = LinkedList()
+linked_list_6 = LinkedList()
+
+element_1 = [1,2,3,4]
+element_2 = [5,6,7,8]
 
 for i in element_1:
     linked_list_5.append(i)
