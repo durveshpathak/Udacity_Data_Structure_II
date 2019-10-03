@@ -138,7 +138,7 @@ class LRU_Cache(object):
 
         if key in self.cache_map:
             node_obj = self.cache_map[key]
-            
+
             if node_obj.value is self.lru_list.head.value:
                 return self.lru_list.head.value
 

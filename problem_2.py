@@ -3,13 +3,12 @@ import os
 def find_c_files(path=None, suffix=None):
     if path is None or suffix is None:
         print('Please check the path or suffix')
-        return -1
+        return None
 
     if len(os.listdir(path)) == 0:
         return []
 
     list_of_dir_file = os.listdir(path)
-    #print(list_of_dir_file)
     list_of_dir = []
     list_of_file = []
 
@@ -20,16 +19,13 @@ def find_c_files(path=None, suffix=None):
             list_of_file.append(item)
 
     for file in list_of_file:
-        file_n_len = len(file)
-        if suffix == file[file_n_len-2:]:
+        if file.endswith(suffix):
             list_of_suffix_file.append(file)
 
     for folders in list_of_dir:
-        # print(path + '/'+folders)
         find_c_files(path + '/' + folders, suffix)
     return list_of_suffix_file
 
-    return 0
 
 # Test Case 1
 list_of_suffix_file = []

@@ -138,7 +138,7 @@ a_new_sentence = "I am dumb"
 print ("The size of the data is: {}\n".format(sys.getsizeof(a_new_sentence)))
 #The size of the data is: 67
 print ("The content of the data is: {}\n".format(a_new_sentence))
-#The content of the data is:  I like Programming
+#The content of the data is:  I am dumb
 
 encoded_data, lookup = huffman_encoding(a_new_sentence)
 print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
@@ -150,4 +150,4 @@ decoded_data = huffman_decoding(encoded_data,lookup)
 print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
 #The size of the decoded data is: 67
 print ("The content of the encoded data is: {}\n".format(decoded_data))
-#The content of the encoded data is: I like Programming
+#The content of the encoded data is: I am dumb

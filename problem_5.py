@@ -35,8 +35,9 @@ class LinkedList:
       def __init__(self):
           self.head = None
           self.tail = None
-
-      def prepend(self,data):
+""" Prepend function accepts BlockXXX_data which is a tuple having timestamp  
+and name this tuple will not have the previous_hash attribute"""
+      def prepend(self, data):
           if len(data) == 0:
               print('Cant add block with no data')
               return
@@ -84,15 +85,15 @@ class LinkedList:
 
 
 #Test Case 1
-Block1 = (str(datetime.now().timestamp()),'durvesh')
-Block2 = (str(datetime.now().timestamp()), 'Prachi')
-Block3 = (str(datetime.now().timestamp()), 'Nikhil' )
-Block4 = (str(datetime.now().timestamp()), 'Anurag' )
+Block1_data = (str(datetime.now().timestamp()),'durvesh')
+Block2_data = (str(datetime.now().timestamp()), 'Prachi')
+Block3_data = (str(datetime.now().timestamp()), 'Nikhil' )
+Block4_data = (str(datetime.now().timestamp()), 'Anurag' )
 blockchain = LinkedList()
-blockchain.prepend(Block1)
-blockchain.prepend(Block2)
-blockchain.prepend(Block3)
-blockchain.prepend(Block4)
+blockchain.prepend(Block1_data)
+blockchain.prepend(Block2_data)
+blockchain.prepend(Block3_data)
+blockchain.prepend(Block4_data)
 print(blockchain.search('Anurag'))
 #Block is:
 # Data: Anurag
@@ -120,26 +121,26 @@ Block is:
  Hash: af6120b194b0fd59eed566e0ed9943f0f93752020df72fc9205809d73c3bd449"""
 
 #Test Case 2
-Block1 = (str(datetime.now().timestamp()),'durvesh')
-Block4 = (str(datetime.now().timestamp()), 'Anurag' )
-Block3 = (str(datetime.now().timestamp()), 'Nikhil' )
-Block5 = (str(datetime.now().timestamp()), 'ramesh' )
-Block6 = (str(datetime.now().timestamp()), 'bharati' )
-Block7 = (str(datetime.now().timestamp()), 'shyam' )
-Block8 = (str(datetime.now().timestamp()), 'saurabh' )
-Block9 = (str(datetime.now().timestamp()), 'friedman' )
-Block10 =(str(datetime.now().timestamp()), 'dave' )
+Block1_data = (str(datetime.now().timestamp()),'durvesh')
+Block4_data = (str(datetime.now().timestamp()), 'Anurag' )
+Block3_data = (str(datetime.now().timestamp()), 'Nikhil' )
+Block5_data = (str(datetime.now().timestamp()), 'ramesh' )
+Block6_data = (str(datetime.now().timestamp()), 'bharati' )
+Block7_data = (str(datetime.now().timestamp()), 'shyam' )
+Block8_data = (str(datetime.now().timestamp()), 'saurabh' )
+Block9_data = (str(datetime.now().timestamp()), 'friedman' )
+Block10_data =(str(datetime.now().timestamp()), 'dave' )
 blockchain = LinkedList()
-blockchain.prepend(Block1)
-blockchain.prepend(Block2)
-blockchain.prepend(Block3)
-blockchain.prepend(Block4)
-blockchain.prepend(Block5)
-blockchain.prepend(Block6)
-blockchain.prepend(Block7)
-blockchain.prepend(Block8)
-blockchain.prepend(Block9)
-blockchain.prepend(Block10)
+blockchain.prepend(Block1_data)
+blockchain.prepend(Block2_data)
+blockchain.prepend(Block3_data)
+blockchain.prepend(Block4_data)
+blockchain.prepend(Block5_data)
+blockchain.prepend(Block6_data)
+blockchain.prepend(Block7_data)
+blockchain.prepend(Block8_data)
+blockchain.prepend(Block9_data)
+blockchain.prepend(Block10_data)
 print(blockchain.search('dave'))
 #Block is:
 # Data: dave
@@ -149,6 +150,8 @@ print(blockchain.search('dave'))
 print(blockchain.search('shubham'))
 #None
 
+print(blockchain.tail.previous_hash)
+
 print (blockchain.size())
 #10
 
@@ -156,10 +159,10 @@ print (blockchain.size())
 
 
 # Edge cases
-Block1 = ('')
+Block1_data = ('')
 blockchain = LinkedList()
 
-blockchain.prepend(Block1)
+blockchain.prepend(Block1_data)
 #Cant add block with no data
 blockchain.print_blockchain()
 #Block empty
